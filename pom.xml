@@ -28,6 +28,13 @@
 
 	<modules>
 		<module>r-server1</module>
+		<module>r-server2</module>
+		<module>r-server3</module>
+
+		<module>s-zuul</module>
+		<module>s-feign</module>
+
+		<module>s-admin</module>
 		<module>s-user</module>
 	</modules>
 
@@ -39,6 +46,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<!--监控系统健康情况的工具 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
 
@@ -67,9 +80,16 @@
 		</dependency>
 
 		<!--eureka server -->
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka-server</artifactId>
+		</dependency>
+
+		<!--eureka client -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
 
 
