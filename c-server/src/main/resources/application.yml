@@ -1,0 +1,19 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://server1:9001/eureka/,http://server2:9002/eureka/,http://server3:9003/eureka/
+server:
+  port: 9005
+spring:
+  application:
+    name: c-serevr
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/XDFHTY/config.git
+          search-paths: zuul
+          username:
+          password:
+      label: master
+

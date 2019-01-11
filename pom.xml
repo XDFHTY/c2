@@ -31,6 +31,8 @@
 		<module>r-server2</module>
 		<module>r-server3</module>
 
+		<module>c-server</module>
+
 		<module>s-zuul</module>
 		<module>s-feign</module>
 

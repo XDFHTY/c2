@@ -9,6 +9,7 @@ spring:
     name: s-zuul
 
 zuul:
+  addProxyHeaders: true
   host:
     connect-timeout-millis: 60000
     socket-timeout-millis: 60000
@@ -16,9 +17,11 @@ zuul:
     api-a:
       path: /user-api/**
       serviceId: s-feign
+      stripPrefix: false
     api-b:
       path: /admin-api/**
       serviceId: s-feign
+      stripPrefix: false
 
 
 
