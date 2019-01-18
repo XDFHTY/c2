@@ -7,6 +7,16 @@ server:
 spring:
   application:
     name: s-zuul
+  cloud:
+    config:
+      discovery:
+      #从配置中心读取文件。
+        enabled: true
+        #配置中心的servieId，即服务名
+        service-id: c-server
+      label: master
+      profile: dev
+      uri: http://c-server:9005/
 
 zuul:
   addProxyHeaders: true
