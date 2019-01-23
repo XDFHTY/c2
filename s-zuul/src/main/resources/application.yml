@@ -16,7 +16,7 @@ spring:
         service-id: c-server
       label: master
       profile: dev
-      uri: http://c-server:9005/
+      uri: http://c-server:8888/
 
 zuul:
   addProxyHeaders: true

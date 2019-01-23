@@ -3,7 +3,7 @@ eureka:
     serviceUrl:
       defaultZone: http://server1:9001/eureka/,http://server2:9002/eureka/,http://server3:9003/eureka/
 server:
-  port: 9005
+  port: 8888
 spring:
   application:
     name: c-serevr
