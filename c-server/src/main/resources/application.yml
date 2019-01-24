@@ -3,17 +3,33 @@ eureka:
     serviceUrl:
       defaultZone: http://server1:9001/eureka/,http://server2:9002/eureka/,http://server3:9003/eureka/
 server:
-  port: 8888
+  port: 9005
 spring:
   application:
-    name: c-serevr
+    name: c-server
   cloud:
     config:
       server:
         git:
-          uri: https://github.com/XDFHTY/config.git
+          uri: ENC(KfDmECiR/vcDDkM1J8t6ixrv5daNpojj8qMhf6Q6n1XLKwGPgoFJG87uZyygoRRg)
           search-paths: zuul
           username:
           password:
       label: master
+jasypt:
+  encryptor:
+    password: config
+#SpringCloud 1.5版本暴露接口，暴露/bus-refresh接口
+management:
+  security:
+    enabled: false
+#SpringCloud 2.0.0版本以后暴露接口方式
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
 
+#是否开启基本的鉴权，默认为true
+#security:
+#  basic:
+#    enabled: false

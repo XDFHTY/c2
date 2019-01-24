@@ -1,22 +1,4 @@
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://server1:9001/eureka/,http://server2:9002/eureka/,http://server3:9003/eureka/
-server:
-  port: 9010
-spring:
-  application:
-    name: s-zuul
-  cloud:
-    config:
-      discovery:
-      #从配置中心读取文件。
-        enabled: true
-        #配置中心的servieId，即服务名
-        service-id: c-server
-      label: master
-      profile: dev
-      uri: http://c-server:8888/
+
 
 zuul:
   addProxyHeaders: true
