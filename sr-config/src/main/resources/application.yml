@@ -3,16 +3,16 @@ eureka:
     serviceUrl:
       defaultZone: http://server1:9001/eureka/,http://server2:9002/eureka/,http://server3:9003/eureka/
 server:
-  port: 9005
+  port: 8888
 spring:
   application:
-    name: c-server
+    name: sr-config
   cloud:
     config:
       server:
         git:
           uri: ENC(KfDmECiR/vcDDkM1J8t6ixrv5daNpojj8qMhf6Q6n1XLKwGPgoFJG87uZyygoRRg)
-          search-paths: zuul
+          search-paths: dev
           username:
           password:
       label: master

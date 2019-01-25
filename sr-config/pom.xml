@@ -8,10 +8,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<groupId>com.cj</groupId>
-	<artifactId>c-server</artifactId>
+	<artifactId>sr-config</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>c-server</name>
+	<name>sr-config</name>
 	<description>分布式配置中心</description>
 
 	<properties>

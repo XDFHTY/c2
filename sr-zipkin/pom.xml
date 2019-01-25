@@ -8,10 +8,10 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<artifactId>s-feign</artifactId>
+	<artifactId>sr-zipkin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>s-feign</name>
-	<description>Feign 负载均衡</description>
+	<name>sr-zipkin</name>
+	<description>服务追踪分析</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -19,22 +19,16 @@
 
 	<dependencies>
 
-        <!--内部负载均衡-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-feign</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>io.zipkin.java</groupId>
+			<artifactId>zipkin-server</artifactId>
+		</dependency>
 
 		<dependency>
-			<groupId>io.github.openfeign.form</groupId>
-			<artifactId>feign-form</artifactId>
-			<version>3.0.3</version>
+			<groupId>io.zipkin.java</groupId>
+			<artifactId>zipkin-autoconfigure-ui</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>io.github.openfeign.form</groupId>
-			<artifactId>feign-form-spring</artifactId>
-			<version>3.0.3</version>
-		</dependency>
+
 
 	</dependencies>
 

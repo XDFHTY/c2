@@ -11,7 +11,7 @@ spring:
     config:
       discovery:
         enabled: true
-        service-id: c-server
+        service-id: sr-config
       label: master
       profile: dev
 
