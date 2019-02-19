@@ -6,7 +6,7 @@
 		<groupId>com.cj</groupId>
 		<artifactId>cloud</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath>
+		<!-- <relativePath>../pom.xml</relativePath> -->
 	</parent>
 	<artifactId>s-feign</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -35,6 +35,8 @@
 			<artifactId>feign-form-spring</artifactId>
 			<version>3.0.3</version>
 		</dependency>
+
+
 
 	</dependencies>
 

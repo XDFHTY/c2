@@ -1,0 +1,91 @@
+spring:
+  http:
+    multipart:
+      maxFileSize: 50Mb
+      maxRequestSize: 100Mb
+  zipkin:
+    base-url: http://sr-zipkin/
+    enabled: true
+  sleuth:
+    sampler:
+      percentage: 1
+#======================================springboot默认数据源
+  datasource:
+    url: jdbc:mysql://118.123.16.211:3306/oildev?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
+    username: ENC(9aNi3IHj2H6kZr0ODNHtyA==)
+#    password: ENC(9aNi3IHj2H6kZr0ODNHtyA==)
+    password: ENC(TkOCIol7cpFd41MfpYYQBK+giiV3zOn3)
+    driverClassName: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    logSlowSql: true
+zuul:
+  addProxyHeaders: true
+  host:
+    connect-timeout-millis: 600000
+    socket-timeout-millis: 600000
+    max-total-connections: 2000
+    max-per-route-connections: 200
+  routes:
+    api-0:
+      path: /apizuul/**
+      serviceId: s-zuul
+
+
+    api-a:
+      path: /api/user/**
+      serviceId: s-feign
+      stripPrefix: false
+
+
+    api-b1:
+      path: /api/admin/v*/**
+      serviceId: s-feign
+      stripPrefix: false
+    api-b2:
+      path: /api/admin/*
+      serviceId: s-admin
+      stripPrefix: false
+    api-b3:
+      path: /apiadmin/**
+      serviceId: s-admin
+
+
+    api-c:
+      path: /api/file/**
+      serviceId: s-file
+      stripPrefix: false
+
+
+  #需要忽略的头部信息，不在传播到其他服务
+  sensitive-headers:  Access-Control-Allow-Origin
+  ignored-headers:  Access-Control-Allow-Origin,H-APP-Id,Token,APPToken
+#  ignored-patterns: /**/api/**
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 600000
+ribbon:
+ ReadTimeout: 60000  # 单位毫秒数
+ SocketTimeout: 60000
+
+#这个属于自定义的属性，指定了一个路径，用于文件上传，注意要以/结尾
+web:
+  upload-path: D:/file/oil/
+
+
+datapram:
+  tooldir: mysqldump
+  ip: 118.123.16.211
+  dbname: oildev
+  username: ENC(9aNi3IHj2H6kZr0ODNHtyA==)
+  password: ENC(TkOCIol7cpFd41MfpYYQBK+giiV3zOn3)
+  dir: D:/file/oil/sql/
+
+jasypt:
+  encryptor:
+    password: root

@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface FeignUserService {
 
 
-    @GetMapping(value = "/user-api/hi")
+    @GetMapping(value = "/api/user/hi")
     String sayHiFromClientOne(@RequestParam(value = "name") String name);
 }

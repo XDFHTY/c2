@@ -14,13 +14,9 @@ spring:
         service-id: sr-config
       label: master
       profile: dev
-
   rabbitmq:
     host: localhost
     port: 5672
     username: guest
     password: guest
 
-#security:
-#  basic:
-#    enabled: false

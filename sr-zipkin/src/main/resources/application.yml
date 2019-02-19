@@ -12,3 +12,6 @@ spring:
     port: 5672
     username: guest
     password: guest
+  zipkin:
+    #关闭本工程的推送到zipkin服务的功能
+    enabled: false

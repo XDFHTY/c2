@@ -12,8 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/file-api")
-@RefreshScope
+@RequestMapping("/api/file")
 public class FileController {
 
 
@@ -26,7 +25,7 @@ public class FileController {
 
         System.out.println(files.length);
 
-        ResponseEntity<String> s = restTemplate.getForEntity("http://127.0.0.1:9201/admin-api/hi",String.class);
+        ResponseEntity<String> s = restTemplate.getForEntity("http://127.0.0.1:9201/api/admin/hi",String.class);
 
         return files.length+"==="+s.getBody();
 

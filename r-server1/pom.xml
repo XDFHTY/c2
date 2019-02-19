@@ -7,7 +7,7 @@
 		<groupId>com.cj</groupId>
 		<artifactId>cloud</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath>
+		<!-- <relativePath>../pom.xml</relativePath> -->
 	</parent>
 
 	<artifactId>r-server1</artifactId>
@@ -19,7 +19,8 @@
 
 
 	<dependencies>
-	</dependencies>
+
+    </dependencies>
 
 	<build>
 		<plugins>

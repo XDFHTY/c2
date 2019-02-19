@@ -11,6 +11,9 @@ import zipkin.server.EnableZipkinServer;
 public class SrZipkinApplication {
 
 	public static void main(String[] args) {
+
+		args = new String[1];
+		args[0] = "--spring.profiles.active=zipkin-http";
 		SpringApplication.run(SrZipkinApplication.class, args);
 	}
 

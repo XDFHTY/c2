@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/admin-api")
+@RequestMapping("/api/admin")
 public class AdminController {
 
     @Resource

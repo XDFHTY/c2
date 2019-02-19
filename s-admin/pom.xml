@@ -6,7 +6,7 @@
 		<groupId>com.cj</groupId>
 		<artifactId>cloud</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath>
+		<!-- <relativePath>../pom.xml</relativePath> -->
 	</parent>
 	<artifactId>s-admin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -18,6 +18,17 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.cj</groupId>
+			<artifactId>core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.cj</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
