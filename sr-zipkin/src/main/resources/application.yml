@@ -8,10 +8,10 @@ spring:
   application:
     name: sr-zipkin
   rabbitmq:
-    host: localhost
+    host: 118.123.16.211
     port: 5672
-    username: guest
-    password: guest
+    username: admin
+    password: admin
   zipkin:
     #关闭本工程的推送到zipkin服务的功能
     enabled: false

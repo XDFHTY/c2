@@ -15,10 +15,10 @@ spring:
       label: master
       profile: dev
   rabbitmq:
-    host: localhost
+    host: 118.123.16.211
     port: 5672
-    username: guest
-    password: guest
+    username: admin
+    password: admin
   zipkin:
     base-url: http://sr-zipkin/
     enabled: true
