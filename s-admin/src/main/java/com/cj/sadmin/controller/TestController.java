@@ -7,15 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api")
 @RefreshScope
 public class TestController {
 
     @Value("${server.port}")
     String port;
-
-    @Value("${fo}")
-    private String fo;
 
 
     @GetMapping("/hi")
@@ -25,8 +22,11 @@ public class TestController {
     }
 
 
-    @GetMapping("/fo")
-    public String getFo() {
-        return fo;
-    }
+//    @Value("${fo}")
+//    private String fo;
+//
+//    @GetMapping("/fo")
+//    public String getFo() {
+//        return fo;
+//    }
 }

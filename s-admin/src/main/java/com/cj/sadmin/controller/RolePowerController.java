@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/api/v1/admin/rolepower")
+@RequestMapping("/api/v1/rolepower")
 @Api(tags = "账号、角色、权限模块: 角色、权限管理")
 public class RolePowerController {
 

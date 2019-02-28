@@ -16,8 +16,11 @@ import com.cj.common.service.AuthRoleModularService;
 import com.cj.core.domain.ApiResult;
 import com.cj.core.domain.MemoryData;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -46,6 +49,10 @@ public class RolePowerServiceImpl implements RolePowerService {
     private AuthRoleModularService authRoleModularService;
 
 
+    Gson gson = new Gson();
+
+    @Resource
+    private RedisTemplate redisTemplate;
 
     @Override
     public ApiResult findAllRole() {
@@ -53,7 +60,11 @@ public class RolePowerServiceImpl implements RolePowerService {
         //查询所有角色
         List<AuthRole> authRoles = authRoleMapper.findAllAuthRole();
         //获取系统内所有权限
-        AuthModulars authModulars = (AuthModulars) MemoryData.getRoleModularMap().get("authModulars");
+//        AuthModulars authModulars = (AuthModulars) MemoryData.getRoleModularMap().get("authModulars");
+
+        AuthModulars authModulars = gson.fromJson((String) redisTemplate.opsForValue().get("authModulars"),AuthModulars.class);
+
+
 
 
         FindAllRoleResp findAllRoleResp = new FindAllRoleResp();
@@ -116,8 +127,9 @@ public class RolePowerServiceImpl implements RolePowerService {
         Map map = gson.fromJson(json,Map.class);
         long roleId = ((Double) map.get("roleId")).longValue();
 
-        List<AuthRoleModulars> authRoleModulars = (List<AuthRoleModulars>) MemoryData.getRoleModularMap().get("authRoleModulars");
+//        List<AuthRoleModulars> authRoleModulars = (List<AuthRoleModulars>) MemoryData.getRoleModularMap().get("authRoleModulars");
 //        AuthModulars authModulars = (AuthModulars) MemoryData.getRoleModularMap().get("authModulars");
+        List<AuthRoleModulars> authRoleModulars = gson.fromJson((String)redisTemplate.opsForValue().get("authRoleModulars"),new TypeToken<List<AuthRoleModulars>>(){}.getType());
 
 
         for (AuthRoleModulars authRoleModulars0 : authRoleModulars){

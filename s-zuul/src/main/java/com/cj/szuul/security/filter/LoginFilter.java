@@ -1,18 +1,25 @@
 package com.cj.szuul.security.filter;
 
+import com.cj.common.domain.AuthRoleModulars;
 import com.cj.common.utils.http.HttpUtil;
+import com.cj.common.utils.jwt.JwtUtil;
 import com.cj.core.domain.ApiResult;
 import com.cj.core.domain.MemoryData;
-import com.cj.common.utils.jwt.JwtUtil;
 import com.cj.szuul.security.dto.Customer;
 import com.cj.szuul.security.dto.TokenUserAuthentication;
+import com.google.gson.Gson;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationContext;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import javax.annotation.Resource;
 import javax.servlet.FilterChain;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +40,11 @@ public class LoginFilter extends OncePerRequestFilter {
 
 
 
+  @Resource
+  public RedisTemplate redisTemplate;
+
+
+
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
     //前端提交的token
@@ -45,7 +57,7 @@ public class LoginFilter extends OncePerRequestFilter {
     //用户未上传token
     if (newToken == null || newToken.trim().length() == 0) {
       apiResult = ApiResult.CODE_401();
-      apiResult.setMsg("用户未提交token");
+      apiResult.setMsg("用户未提交token,URI: "+request.getRequestURI());
 
 
 
@@ -57,7 +69,7 @@ public class LoginFilter extends OncePerRequestFilter {
     authentication = Optional.empty();
     SecurityContextHolder.getContext().setAuthentication(authentication.orElse(null));
 //      filterChain.doFilter(request,response);
-    log.info("token"+newToken);
+    log.info("token: "+newToken);
 
 
     //存储内存中的token
@@ -81,20 +93,21 @@ public class LoginFilter extends OncePerRequestFilter {
 //      filterChain.doFilter(request,response);
     SecurityContextHolder.getContext().setAuthentication(authentication.orElse(null));
 
+    ServletContext sc = request.getSession().getServletContext();
+    ApplicationContext ac = WebApplicationContextUtils.getRequiredWebApplicationContext(sc);
+
+    redisTemplate = (RedisTemplate) ac.getBean("redisTemplate");
+
+
+
 
 
     //解析用户名
     id = (Integer) claims.get("id");
-    log.info(MemoryData.getTokenMap().get(id.toString()));
-    Map map=MemoryData.getTokenMap();
-    //当前用户的tmemorydata中的token
-    if (MemoryData.getTokenMap().containsKey(id.toString())){
-      //初始化memorydata内存中的token
-      oldToken = MemoryData.getTokenMap().get(id.toString());
-
-    }
-    //token过期
-    if (oldToken == null) {
+    String tokenKey = "token:"+id;
+    Boolean b = redisTemplate.hasKey(tokenKey);
+    //token已过期
+    if (!b){
       //返回http信息
       apiResult = ApiResult.CODE_401();
       apiResult.setMsg("token已过期");
@@ -102,7 +115,36 @@ public class LoginFilter extends OncePerRequestFilter {
 
       HttpUtil.doReturn(response,apiResult);
       return;
+    }else {
+      oldToken = (String) redisTemplate.opsForValue().get(tokenKey);
+      if (!newToken.equals(oldToken)){
+        //返回http信息
+        apiResult = ApiResult.CODE_401();
+        apiResult.setMsg("新旧token不匹配");
+
+
+        HttpUtil.doReturn(response,apiResult);
+        return;
+      }
     }
+
+//    Map tokenMap=MemoryData.getTokenMap();
+//    //当前用户的tmemorydata中的token
+//    if (tokenMap.containsKey(id.toString())){
+//      //初始化memorydata内存中的token
+//      oldToken = (String) tokenMap.get(id.toString());
+//
+//    }
+//    //token过期
+//    if (oldToken == null) {
+//      //返回http信息
+//      apiResult = ApiResult.CODE_401();
+//      apiResult.setMsg("token已过期");
+//
+//
+//      HttpUtil.doReturn(response,apiResult);
+//      return;
+//    }
     //存储验证失败信息
     authentication = Optional.empty();
     SecurityContextHolder.getContext().setAuthentication(authentication.orElse(null));
@@ -124,6 +166,16 @@ public class LoginFilter extends OncePerRequestFilter {
       session.setAttribute("name",customer.getCustomerName());
       session.setAttribute("type",customer.getCustomerType());
       session.setAttribute("roles",roles);
+
+
+//      Boolean b2 = redisTemplate.hasKey("modulars");
+//      if (b2){
+//        List<AuthRoleModulars> modulars = (List<AuthRoleModulars>)redisTemplate.opsForValue().get("modulars");
+//        MemoryData.getRoleModularMap().put("modulars",modulars);
+//
+//      }else {
+//        System.out.println("============================缓存异常============");
+//      }
 
       authentication = Optional.of(new TokenUserAuthentication(customer, roles, true));
       SecurityContextHolder.getContext().setAuthentication(authentication.orElse(null));

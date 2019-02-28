@@ -6,6 +6,7 @@ import com.cj.szuul.security.dto.SecureResourceFilterInvocationDefinitionSource;
 import com.cj.szuul.security.filter.LoginFilter;
 import com.cj.szuul.security.filter.PowerFilter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,6 +25,7 @@ import java.util.List;
  */
 @Configuration
 @EnableWebSecurity
+@Order(2147483647)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -41,16 +43,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
           "/configuration/ui",
           "/configuration/security",
           "/favicon.ico",
+          "csrf",
 
           "/*",
           "/swagger-ui.html",
           "/docs.html",
 
-          "/api/admin/*",
-          "/api/v1/admin/rolepower/readRolePower",
+          "/api/*",
+          "/s-admin/api/*",
+          "/s-zuul/api/*",
+          "/s-user/api/*",
+
+          "/*admin/api/v1/rolepower/readRolePower",
           //管理员登录
-          "/api/v1/admin/account/ifLogin",
-          "/health/**",
+          "/*admin/api/v1/account/ifLogin",
+
+
 
   };
   /**

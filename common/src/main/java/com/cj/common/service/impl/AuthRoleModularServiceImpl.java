@@ -8,6 +8,8 @@ import com.cj.common.mapper.AuthModularMapper;
 import com.cj.common.mapper.AuthRoleModularMapper;
 import com.cj.common.service.AuthRoleModularService;
 import com.cj.core.domain.MemoryData;
+import com.google.gson.Gson;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +25,13 @@ public class AuthRoleModularServiceImpl implements AuthRoleModularService {
 
     @Resource
     private AuthModularMapper authModularMapper;
+
+    Gson gson = new Gson();
+
+    @Resource
+    private RedisTemplate redisTemplate;
+
+
     @Override
     public List<AuthRoleModulars> findRoleModular() {
 
@@ -33,6 +42,9 @@ public class AuthRoleModularServiceImpl implements AuthRoleModularService {
 
         MemoryData.getRoleModularMap().put("authModulars",authModulars);
         MemoryData.getRoleModularMap().put("authRoleModulars",authRoleModulars);
+
+        redisTemplate.opsForValue().set("authModulars",gson.toJson(authModulars));
+        redisTemplate.opsForValue().set("authRoleModulars",gson.toJson(authRoleModulars));
 
         //将系统权限添加到角色权限对象集合
         for (AuthRoleModulars authRoleModulars1 : authRoleModulars){

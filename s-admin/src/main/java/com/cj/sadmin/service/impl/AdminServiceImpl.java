@@ -1,11 +1,6 @@
 package com.cj.sadmin.service.impl;
 
 
-import com.cj.sadmin.domain.AddAdminResp;
-import com.cj.sadmin.domain.IfLoginResp;
-import com.cj.sadmin.domain.UpdateAdminByAdminPassReq;
-import com.cj.sadmin.mapper.AdminMapper;
-import com.cj.sadmin.service.AdminService;
 import com.cj.common.entity.Admin;
 import com.cj.common.entity.AuthCustomerRole;
 import com.cj.common.entity.AuthRole;
@@ -16,14 +11,19 @@ import com.cj.common.service.AuthCustomerRoleService;
 import com.cj.common.utils.jwt.JwtUtil;
 import com.cj.core.domain.ApiResult;
 import com.cj.core.domain.MemoryData;
-import org.springframework.beans.factory.annotation.Value;
+import com.cj.sadmin.domain.AddAdminResp;
+import com.cj.sadmin.domain.IfLoginResp;
+import com.cj.sadmin.domain.UpdateAdminByAdminPassReq;
+import com.cj.sadmin.mapper.AdminMapper;
+import com.cj.sadmin.service.AdminService;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -49,6 +49,8 @@ public class AdminServiceImpl implements AdminService {
 
 
 
+    @Resource
+    private RedisTemplate redisTemplate;
 
     //添加账号
     @Override
@@ -155,7 +157,6 @@ public class AdminServiceImpl implements AdminService {
             Long adminId = oldAdmin.getAdminId();
             String adminName = oldAdmin.getAdminName();
 
-            String tokenKey = adminId.toString();
 
             //查询账号角色信息
             List<AuthRole> roles = authCustomerRoleService.findCustomerRoleById(adminId);
@@ -164,6 +165,17 @@ public class AdminServiceImpl implements AdminService {
 
             //设置token，有效期
             token = JwtUtil.getToken(adminId,adminName,oldAdmin.getAdminType(),roles);
+
+            String tokenKey = "token:"+adminId;
+
+            Boolean b = redisTemplate.hasKey(tokenKey);
+            if (!b){
+                redisTemplate.opsForValue().set(tokenKey,token,1800l);
+            }else {
+
+                redisTemplate.opsForValue().getAndSet(tokenKey,token);
+            }
+
 
             IfLoginResp ifLoginResp = new IfLoginResp();
             ifLoginResp.setToken(token);

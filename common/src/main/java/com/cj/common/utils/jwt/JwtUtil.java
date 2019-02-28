@@ -5,11 +5,15 @@ import com.cj.core.domain.MemoryData;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.thymeleaf.util.StringUtils;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * jwt工具类
@@ -21,25 +25,6 @@ public class JwtUtil {
 
     //加密、解析算法
     private static final SignatureAlgorithm mode = SignatureAlgorithm.HS256;
-    /**
-     * 生成用户token
-     * @param userId
-     * @param userName
-     * @param userType
-     * @return
-     */
-    public static String getUserToken(long time,long userId,String userName,String userType){
-        //设置token，有效期
-        String userToken = Jwts.builder()
-                .claim("userId",userId)
-                .claim("userName",userName)
-                .claim("userType",userType)
-                .setIssuedAt(new Date(time))
-                .signWith(mode,key)
-                .compact();
-
-        return userToken;
-    }
 
     /**
      * 生成token并放入内存
@@ -63,38 +48,17 @@ public class JwtUtil {
                 .signWith(mode,key)
                 .compact();
 
-        String tokenKey = consumerId+"";
 
-        if (!MemoryData.getTokenMap().containsKey(tokenKey)) { //不存在，首次登陆，放入Map
-            MemoryData.getTokenMap().put(tokenKey, token);  //添加adminId-token
-        } else if (MemoryData.getTokenMap().containsKey(tokenKey) && !StringUtils.equals(token, MemoryData.getTokenMap().get(tokenKey))) {
-            MemoryData.getTokenMap().remove(tokenKey);  //删除adminId-token
-            MemoryData.getTokenMap().put(tokenKey, token);  //添加adminId-token
-        }
+//        Map tokenMap = MemoryData.getTokenMap();
+//        if (!tokenMap.containsKey(tokenKey)) { //不存在，首次登陆，放入Map
+//            tokenMap.put(tokenKey, token);  //添加adminId-token
+//        } else if (tokenMap.containsKey(tokenKey) && !StringUtils.equals(token, tokenMap.get(tokenKey))) {
+//            tokenMap.remove(tokenKey);  //删除adminId-token
+//            tokenMap.put(tokenKey, token);  //添加adminId-token
+//        }
 
 
         return token;
-    }
-    /**
-     * 生成管理员token
-     * @param time
-     * @param adminId
-     * @param adminName
-     * @param adminType
-     * @return
-     */
-    public static String getAdminToken(long time,long adminId,String adminName,String adminType){
-        //设置token，有效期
-        String AdminToken = Jwts.builder()
-                .claim("adminId",adminId)
-                .claim("adminName",adminName)
-                .claim("adminType",adminType)
-                .setIssuedAt(new Date(time))
-//                    .setExpiration(new Date(time+1000*60*60*2))
-                .signWith(mode,key)
-                .compact();
-
-        return AdminToken;
     }
 
     /**

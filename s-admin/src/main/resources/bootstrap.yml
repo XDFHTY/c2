@@ -19,9 +19,4 @@ spring:
     port: 5672
     username: admin
     password: admin
-  zipkin:
-    base-url: http://sr-zipkin/
-    enabled: true
-  sleuth:
-    sampler:
-      percentage: 1
+

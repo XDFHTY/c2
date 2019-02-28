@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableEurekaClient
 
 @MapperScan({"com.cj.common.mapper","com.cj.sadmin.mapper"})
-@ComponentScan(basePackages = {"com.cj.common","com.cj.sadmin"})
+@ComponentScan(basePackages = {"com.cj"})
 public class SAdminApplication {
 
 	public static void main(String[] args) {

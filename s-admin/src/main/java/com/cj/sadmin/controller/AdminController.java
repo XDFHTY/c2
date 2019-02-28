@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/api/v1/admin/account")
+@RequestMapping("/api/v1/account")
 @Api(tags = "账号、角色、权限模块: 账号管理")
 public class AdminController {
      Long id=null;
