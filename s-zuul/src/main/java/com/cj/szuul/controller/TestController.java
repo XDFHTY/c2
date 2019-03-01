@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @RefreshScope //从配置中心动态获取配置文件
 @Slf4j
-public class ConfigController {
+public class TestController {
 
     @Value("${server.port}")
     private String foo;

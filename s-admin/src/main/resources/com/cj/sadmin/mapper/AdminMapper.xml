@@ -209,4 +209,7 @@
       admin_id = #{adminId,jdbcType=BIGINT}
   </update>
 
+  <insert id="testTX">
+    INSERT  INTO auth_role(role_name, role_description_name) VALUES ("测试角色a","场站级")
+  </insert>
 </mapper>

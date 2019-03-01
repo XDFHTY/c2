@@ -7,14 +7,16 @@ server:
 spring:
   application:
     name: s-user
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: sr-config
+      label: master
+      profile: dev
   rabbitmq:
     host: 118.123.16.211
     port: 5672
     username: admin
     password: admin
-  zipkin:
-    base-url: http://sr-zipkin/
-    enabled: true
-  sleuth:
-    sampler:
-      percentage: 1
+
