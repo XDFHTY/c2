@@ -7,6 +7,7 @@ import com.cj.suser.service.TestService;
 import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -19,12 +20,13 @@ import java.util.List;
 
 @Service
 @Transactional
+@RefreshScope
 public class TestServiceImpl implements TestService {
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
+    @Autowired(required = false)
     private AdminMapper adminMapper;
 
     Gson gson = new Gson();
@@ -38,7 +40,7 @@ public class TestServiceImpl implements TestService {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
         headers.add("token", token);
-        String url = "http://127.0.0.1:9201/api/satx";
+        String url = "http://s-admin/api/satx";
         String json = "222";
 
         String s = restTemplate.getForObject(
@@ -49,8 +51,7 @@ public class TestServiceImpl implements TestService {
 
         ApiResult apiResult = gson.fromJson(s,ApiResult.class);
         System.out.println(apiResult);
-        List list = (List) apiResult.getData();
-        return list.size();
+        return i;
 
     }
 }

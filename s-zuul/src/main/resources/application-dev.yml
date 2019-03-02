@@ -10,7 +10,6 @@ spring:
     sampler:
       percentage: 1
   redis:
-    database: 0
     host: 118.123.16.211
     port: 6379
     timeout: 0

@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-@RefreshScope
+//@RefreshScope
 public class TestController {
 
     @Value("${server.port}")
@@ -40,7 +40,8 @@ public class TestController {
 
         ApiResult apiResult = ApiResult.SUCCESS();
         apiResult.setData(list);
-        if (false){
+        if (true){
+            apiResult = ApiResult.FAIL();
             throw new UserException(apiResult);
 
         }
@@ -48,11 +49,11 @@ public class TestController {
 
     }
 
-//    @Value("${fo}")
-//    private String fo;
-//
-//    @GetMapping("/fo")
-//    public String getFo() {
-//        return fo;
-//    }
+    @Value("${fo}")
+    private String fo;
+
+    @GetMapping("/fo")
+    public String getFo() {
+        return fo;
+    }
 }

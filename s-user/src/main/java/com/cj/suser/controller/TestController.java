@@ -17,6 +17,8 @@ public class TestController {
     @Value("${server.port}")
     String port;
 
+    @Value("${fo2}")
+    private String fo2;
 
     @GetMapping("/hi")
     public String home(@RequestParam String name) throws Exception {
@@ -33,8 +35,10 @@ public class TestController {
         ApiResult apiResult;
         if (i>0){
             apiResult = ApiResult.SUCCESS();
+            apiResult.setData(fo2);
         }else {
             apiResult = ApiResult.FAIL();
+            apiResult.setData(fo2);
         }
         return apiResult;
     }
