@@ -10,7 +10,7 @@ spring:
     sampler:
       percentage: 1
   redis:
-    host: 118.123.16.211
+    host: 47.94.45.159
     port: 6379
     timeout: 0
     pool:

@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class TestController {
 
-    @Value("${server.port}")
+    @Value("${foo}")
     private String foo;
 
-//    @Value("${foo.name}")
-//    private String fooName;
+    @Value("${foo.name}")
+    private String fooName;
 
 
 //    @Resource
@@ -29,7 +29,7 @@ public class TestController {
 
     @GetMapping(value = "/foo")
     public String foo(){
-        return "foo="+foo+",fooname=";
+        return "foo="+foo+",fooname="+fooName;
     }
 
 

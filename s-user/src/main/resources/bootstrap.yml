@@ -9,11 +9,12 @@ spring:
     name: s-user
   cloud:
     config:
-      discovery:
-        enabled: true
-        service-id: sr-config
+#      discovery:
+#        enabled: true
+#        service-id: sr-config
       label: master
       profile: dev
+      uri: http://139.199.19.82:8888
   rabbitmq:
     host: 118.123.16.211
     port: 5672
