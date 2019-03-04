@@ -9,3 +9,5 @@ eureka:
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://server3:9001/eureka/,http://server3:9003/eureka/
+  server:
+    enable-self-preservation: false
