@@ -1,34 +1,10 @@
 spring:
-  http:
-    multipart:
-      maxFileSize: 50Mb
-      maxRequestSize: 100Mb
-  zipkin:
-    base-url: http://sr-zipkin/
-    enabled: true
-  sleuth:
-    sampler:
-      percentage: 1
-  redis:
-    host: 47.94.45.159
-    port: 6379
-    timeout: 0
-    pool:
-      max-wait: -1
-      max-active: 5
-      max-idle: 50
-      min-idle: 10
-#======================================springboot默认数据源
+
   datasource:
-    url: jdbc:mysql://118.123.16.211:3306/oildev?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
+    url: jdbc:mysql://118.123.16.211:3306/ujie?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
     username: ENC(9aNi3IHj2H6kZr0ODNHtyA==)
 #    password: ENC(9aNi3IHj2H6kZr0ODNHtyA==)
     password: ENC(TkOCIol7cpFd41MfpYYQBK+giiV3zOn3)
     driverClassName: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    logSlowSql: true
-web:
-  upload-path: D:/file/oil/
-jasypt:
-  encryptor:
-    password: root
+

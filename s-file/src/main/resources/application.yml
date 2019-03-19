@@ -12,7 +12,7 @@ spring:
       maxFileSize: 50Mb
       maxRequestSize: 100Mb
   rabbitmq:
-    host: 118.123.16.211
+    host: 59.110.164.54
     port: 5672
     username: admin
     password: admin

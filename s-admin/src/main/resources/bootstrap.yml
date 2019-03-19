@@ -3,21 +3,19 @@ eureka:
     serviceUrl:
       defaultZone: http://server1:9001/eureka/,http://server2:9002/eureka/,http://server3:9003/eureka/
 server:
-  port: 9201
+  port: 9021
 spring:
+  profiles:
+    active: dev
   application:
     name: s-admin
   cloud:
     config:
-#      discovery:
-#        enabled: true
-#        service-id: sr-config
+      discovery:
+        enabled: true
+        service-id: sr-config
       label: master
-      profile: dev
-      uri: http://139.199.19.82:8888
-  rabbitmq:
-    host: 118.123.16.211
-    port: 5672
-    username: admin
-    password: admin
+      profile: ${spring.profiles.active}
+      uri: http://59.110.164.54:8888
+
 

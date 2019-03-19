@@ -1,32 +1,13 @@
 spring:
-  http:
-    multipart:
-      maxFileSize: 50Mb
-      maxRequestSize: 100Mb
-  zipkin:
-    base-url: http://sr-zipkin/
-    enabled: true
-  sleuth:
-    sampler:
-      percentage: 1
-  redis:
-    host: 118.123.16.211
-    port: 6379
-    timeout: 0
-    pool:
-      max-wait: -1
-      max-active: 5
-      max-idle: 50
-      min-idle: 10
-#======================================springboot默认数据源
+
   datasource:
-    url: jdbc:mysql://118.123.16.211:3306/oildev?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
+    url: jdbc:mysql://118.123.16.211:3306/ujie?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
     username: ENC(9aNi3IHj2H6kZr0ODNHtyA==)
 #    password: ENC(9aNi3IHj2H6kZr0ODNHtyA==)
     password: ENC(TkOCIol7cpFd41MfpYYQBK+giiV3zOn3)
     driverClassName: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    logSlowSql: true
+
 zuul:
   addProxyHeaders: true
   host:
@@ -37,29 +18,38 @@ zuul:
   routes:
     s-zuul:
       path: /s-zuul/**
+
+    s-file:
+      path: /s-file/**
+    s-im:
+      path: /s-im/**
+
     s-admin:
       path: /s-admin/**
     s-user:
       path: /s-user/**
+    s-basic:
+      path: /s-basic/**
+    s-consult:
+      path: /s-consult/**
+    s-pension:
+      path: /s-pension/**
+    s-kidney:
+      path: /s-kidney/**
 
 
-    api-b:
-      path: /s-admin/api/v1/**
-      serviceId: s-feign
 
-    api-a:
-      path: /s-user/api/v1/**
-      serviceId: s-feign
 
-    api-c:
-      path: /s-file/api/**
-      serviceId: s-file
+#    api-c:
+#      path: /s-file/api/**
+#      serviceId: s-file
 #      stripPrefix: false
 
 
-  #需要忽略的头部信息，不在传播到其他服务
-  sensitive-headers:  Access-Control-Allow-Origin
-  ignored-headers:  Access-Control-Allow-Origin,H-APP-Id,Token,APPToken
+  #传播到其他服务
+  sensitive-headers:  Cookie,Set-Cookie,Authorization
+#  ignored-headers:  Access-Control-Allow-Origin,H-APP-Id,Token,APPToken
+  strip-prefix: true
 #  ignored-patterns: '*'
 hystrix:
   command:
@@ -74,11 +64,6 @@ ribbon:
  ReadTimeout: 60000  # 单位毫秒数
  SocketTimeout: 60000
 
-#这个属于自定义的属性，指定了一个路径，用于文件上传，注意要以/结尾
-web:
-  upload-path: D:/file/oil/
-
-
 datapram:
   tooldir: mysqldump
   ip: 118.123.16.211
@@ -87,6 +72,7 @@ datapram:
   password: ENC(TkOCIol7cpFd41MfpYYQBK+giiV3zOn3)
   dir: D:/file/oil/sql/
 
-jasypt:
-  encryptor:
-    password: root
+
+
+
+
