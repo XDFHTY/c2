@@ -7,7 +7,6 @@ server:
 spring:
   application:
     name: sr-config
-  cloud:
     config:
       server:
         git:
@@ -39,3 +38,5 @@ management:
 #security:
 #  basic:
 #    enabled: false
+
+#忽略网卡在启动命令后面加--spring.cloud.inetutils.ignored-interfaces=eth0
