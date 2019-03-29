@@ -15,3 +15,4 @@ spring:
   zipkin:
     #关闭本工程的推送到zipkin服务的功能
     enabled: false
+#java -jar zipkin-server-2.12.5-exec.jar --STORAGE_TYPE=mysql --MYSQL_DB=ujzipkin --MYSQL_USER=root --MYSQL_PASS=rootpass --MYSQL_HOST=118.123.16.211 --MYSQL_TCP_PORT=3306>zlog.txt &
