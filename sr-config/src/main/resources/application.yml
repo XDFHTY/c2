@@ -7,8 +7,10 @@ server:
 spring:
   application:
     name: sr-config
+  cloud:
     config:
       server:
+        bootstrap: true
         git:
           uri: ENC(KfDmECiR/vcDDkM1J8t6ixrv5daNpojj8qMhf6Q6n1XLKwGPgoFJG87uZyygoRRg)
           search-paths: dev
@@ -16,7 +18,7 @@ spring:
           password:
       label: master
   rabbitmq:
-    host: 59.110.164.54
+    host: 139.224.195.76
     port: 5672
     username: admin
     password: admin
@@ -25,14 +27,14 @@ jasypt:
   encryptor:
     password: config
 #SpringCloud 1.5版本暴露接口，暴露/bus-refresh接口
-management:
-  security:
-    enabled: false
+#management:
+#  security:
+#    enabled: false
 #SpringCloud 2.0.0版本以后暴露接口方式
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "*"
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 #是否开启基本的鉴权，默认为true
 #security:
