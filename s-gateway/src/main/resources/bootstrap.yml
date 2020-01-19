@@ -3,12 +3,12 @@ eureka:
     serviceUrl:
       defaultZone: http://server1:9001/eureka/,http://server2:9002/eureka/,http://server3:9003/eureka/
 server:
-  port: 9022
+  port: 9000
 spring:
   profiles:
     active: dev
   application:
-    name: s-user
+    name: s-gateway
   cloud:
     config:
       discovery:
@@ -17,4 +17,5 @@ spring:
       label: master
       profile: ${spring.profiles.active}
       uri: http://192.168.1.185:8888
+
 

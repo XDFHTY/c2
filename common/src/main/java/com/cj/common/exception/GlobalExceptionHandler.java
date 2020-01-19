@@ -1,9 +1,8 @@
 package com.cj.common.exception;
 
 import com.cj.core.domain.ApiResult;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-import org.springframework.boot.autoconfigure.web.ErrorController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +18,9 @@ import java.util.Map;
 @RestControllerAdvice
 @RestController
 @ApiIgnore
+@Slf4j
 public class GlobalExceptionHandler implements ErrorController {
 
-    private final Logger logger = LogManager.getLogger(GlobalExceptionHandler.class);
 
 
     /**
@@ -31,7 +30,7 @@ public class GlobalExceptionHandler implements ErrorController {
      */
     @ExceptionHandler({Exception.class})    //申明捕获那个异常类
     public ResponseEntity globalExceptionHandler(Exception e, HttpServletRequest request) {
-        this.logger.error(e.getMessage(), e);
+        log.error(e.getMessage(), e);
 
         ApiResult apiResult = null;
         if (e instanceof org.springframework.web.servlet.NoHandlerFoundException) {
@@ -68,7 +67,7 @@ public class GlobalExceptionHandler implements ErrorController {
     @ExceptionHandler({BaseBusinessException.class})
     public ResponseEntity BusinessExceptionHandler(BaseBusinessException e) {
 
-        this.logger.error(e);
+        log.error(e.getMessage());
         ApiResult apiResult = ApiResult.FAIL();
         apiResult.setCode(e.getCode());
         apiResult.setMsg(e.getMessage());

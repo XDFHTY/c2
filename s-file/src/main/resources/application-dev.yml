@@ -1,6 +1,0 @@
-spring:
-  rabbitmq:
-    host: 59.110.164.54
-    port: 5672
-    username: admin
-    password: admin
