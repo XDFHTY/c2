@@ -22,11 +22,15 @@
 		<dependency>
 			<groupId>io.zipkin.java</groupId>
 			<artifactId>zipkin-server</artifactId>
+			<version>2.12.9</version>
+
 		</dependency>
 
 		<dependency>
 			<groupId>io.zipkin.java</groupId>
 			<artifactId>zipkin-autoconfigure-ui</artifactId>
+			<version>2.12.9</version>
+
 		</dependency>
 
 

@@ -54,6 +54,6 @@ public class TestController {
 
     @GetMapping("/fo")
     public String getFo() {
-        return fo;
+        return fo+" :    "+port;
     }
 }

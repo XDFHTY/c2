@@ -8,7 +8,7 @@ spring:
   application:
     name: sr-zipkin
   rabbitmq:
-    host: 59.110.164.54
+    host: 139.224.195.76
     port: 5672
     username: admin
     password: admin

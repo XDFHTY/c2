@@ -32,7 +32,7 @@
         <module>r-server3</module>
 
         <module>sr-config</module>
-<!--        <module>sr-zipkin</module>-->
+        <module>sr-zipkin</module>
         <module>sr-turbine</module>
 
         <module>core</module>
