@@ -39,16 +39,25 @@
 		<dependency>
 			<groupId>com.spring4all</groupId>
 			<artifactId>swagger-spring-boot-starter</artifactId>
-			<version>1.8.0.RELEASE</version>
+			<version>1.9.1.RELEASE</version>
 			<exclusions>
 				<exclusion>
 					<groupId>com.google.guava</groupId>
 					<artifactId>guava</artifactId>
 				</exclusion>
 			</exclusions>
-
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>28.1-jre</version>
 		</dependency>
 
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>2.0.1</version>
+        </dependency>
 
 
 		<dependency>
@@ -73,19 +82,19 @@
 			<version>4.0.5</version>
 		</dependency>
 
-		<!--离线文档-->
-		<dependency>
-			<groupId>org.springframework.restdocs</groupId>
-			<artifactId>spring-restdocs-mockmvc</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<!--springfox-staticdocs 生成静态文档-->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-staticdocs</artifactId>
-			<version>2.6.1</version>
-			<scope>test</scope>
-		</dependency>
+<!--		&lt;!&ndash;离线文档&ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.restdocs</groupId>-->
+<!--			<artifactId>spring-restdocs-mockmvc</artifactId>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
+<!--		&lt;!&ndash;springfox-staticdocs 生成静态文档&ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>io.springfox</groupId>-->
+<!--			<artifactId>springfox-staticdocs</artifactId>-->
+<!--			<version>2.6.1</version>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
 
 
 		<!--<dependency>-->
@@ -152,12 +161,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
-		<!-- jedis -->
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>2.8.2</version>
-		</dependency>
+<!--		&lt;!&ndash; jedis &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>redis.clients</groupId>-->
+<!--			<artifactId>jedis</artifactId>-->
+<!--			<version>2.8.2</version>-->
+<!--		</dependency>-->
 
 	</dependencies>
 
