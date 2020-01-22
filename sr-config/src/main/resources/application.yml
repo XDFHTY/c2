@@ -17,6 +17,9 @@ spring:
           username:
           password:
       label: master
+      allow-override: true
+      override-none: true
+      override-system-properties: false
   rabbitmq:
     host: 139.224.195.76
     port: 5672

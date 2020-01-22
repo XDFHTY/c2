@@ -2,13 +2,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://server1:9001/eureka/,http://server2:9002/eureka/,http://server3:9003/eureka/
-server:
-  port: 9010
 spring:
   profiles:
     active: dev
-  application:
-    name: s-zuul
   cloud:
     config:
       discovery:
@@ -16,6 +12,6 @@ spring:
         service-id: sr-config
       label: master
       profile: ${spring.profiles.active}
-#      uri: http://139.224.197.220:8888
-
-
+jasypt:
+  encryptor:
+    password: root
