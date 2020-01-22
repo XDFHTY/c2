@@ -47,7 +47,7 @@ public class SecureResourceFilterInvocationDefinitionSource implements FilterInv
         matcher =new AntPathMatcher();
         //安全配置信息集合
         //memorydata中获取当前用户的对应权限信息和角色信息
-        authRoleModulars = (List<AuthRoleModulars>) MemoryData.getRoleModularMap().get("modulars");
+        authRoleModulars = (List<AuthRoleModulars>) MemoryData.roleModularMap.get("modulars");
         FilterInvocation filterInvocation = (FilterInvocation) o;
         //拦截请求url
         String requestURI = filterInvocation.getRequestUrl();

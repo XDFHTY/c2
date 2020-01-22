@@ -20,7 +20,7 @@ public class ConfigurationFilter {
         return new RemoteIpFilter();
     }
 
-    @Value("${web.upload-path}")
+    @Value("${web.path}")
     private String path;
 
 

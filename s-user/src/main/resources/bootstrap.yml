@@ -14,7 +14,7 @@ spring:
       discovery:
         enabled: true
         service-id: sr-config
+#      uri: http://139.224.197.220:8888
       label: master
       profile: ${spring.profiles.active}
-      uri: http://192.168.1.185:8888
 

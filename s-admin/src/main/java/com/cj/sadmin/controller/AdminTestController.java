@@ -2,7 +2,7 @@ package com.cj.sadmin.controller;
 
 import com.cj.common.entity.Admin;
 import com.cj.core.domain.ApiResult;
-import com.cj.core.domain.Pager;
+import com.cj.common.domain.Pager;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;

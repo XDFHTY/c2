@@ -1,5 +1,6 @@
 package com.cj.core.domain;
 
+@Deprecated
 public class OldApiCode {
 
 

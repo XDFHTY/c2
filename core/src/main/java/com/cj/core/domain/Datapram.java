@@ -14,7 +14,9 @@ public class Datapram {
 
     private String dbname;
 
-    private String ip;
+    private String dbport;
+
+    private String dbip;
 
     private String username;
 

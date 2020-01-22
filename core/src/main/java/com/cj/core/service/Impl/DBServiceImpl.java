@@ -13,7 +13,7 @@ public class DBServiceImpl implements DBService {
     private Datapram datapram;
     @Override
     public void backup() {
-        String string = datapram.getTooldir()+" -h "+datapram.getIp()+" -u"+datapram.getUsername()+" -p"+datapram.getPassword()+" "+datapram.getDbname();
+        String string = datapram.getTooldir()+" -h "+datapram.getDbip()+" -u"+datapram.getUsername()+" -p"+datapram.getPassword()+" "+datapram.getDbname();
 
         SqlUtil.backup(string,datapram.getDir());
     }

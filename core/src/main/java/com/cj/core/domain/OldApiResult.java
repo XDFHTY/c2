@@ -3,7 +3,6 @@ package com.cj.core.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  * @param <T>
@@ -11,7 +10,7 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@Deprecated
 public class OldApiResult<T> {
 
     /**

@@ -34,7 +34,7 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
         super();
     }
 
-    @Value("${web.upload-path}")
+    @Value("${web.path}")
     String path;
 
     //重写addResourceHandlers（）后，/static/、/templates/ 下的静态资源可以访问了

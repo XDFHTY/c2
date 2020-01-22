@@ -9,13 +9,13 @@ spring:
     active: dev
   application:
     name: s-gateway
-#  cloud:
-#    config:
-#      discovery:
-#        enabled: true
-#        service-id: sr-config
-#      label: master
-#      profile: ${spring.profiles.active}
-#      uri: http://192.168.1.185:8888
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: sr-config
+      label: master
+      profile: ${spring.profiles.active}
+#      uri: http://139.224.197.220:8888
 
 

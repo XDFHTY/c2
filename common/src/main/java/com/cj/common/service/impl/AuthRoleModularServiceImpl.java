@@ -40,8 +40,8 @@ public class AuthRoleModularServiceImpl implements AuthRoleModularService {
         //查询系统所有角色的权限信息
         List<AuthRoleModulars> authRoleModulars = authRoleModularMapper.findRoleModular();
 
-        MemoryData.getRoleModularMap().put("authModulars",authModulars);
-        MemoryData.getRoleModularMap().put("authRoleModulars",authRoleModulars);
+//        MemoryData.getRoleModularMap().put("authModulars",authModulars);
+//        MemoryData.getRoleModularMap().put("authRoleModulars",authRoleModulars);
 
         redisTemplate.opsForValue().set("authModulars",gson.toJson(authModulars));
         redisTemplate.opsForValue().set("authRoleModulars",gson.toJson(authRoleModulars));
@@ -108,7 +108,7 @@ public class AuthRoleModularServiceImpl implements AuthRoleModularService {
             }
         }
 
-        MemoryData.getRoleModularMap().put("modulars",authRoleModulars);
+//        MemoryData.getRoleModularMap().put("modulars",authRoleModulars);
 //        断点
         System.out.println("=================初始化角色-权限数据完成====================");
         return authRoleModulars;

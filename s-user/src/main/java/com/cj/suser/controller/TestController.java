@@ -2,13 +2,14 @@ package com.cj.suser.controller;
 
 
 import com.cj.core.domain.ApiResult;
+import com.cj.core.domain.ResultUtil;
 import com.cj.suser.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -41,6 +42,21 @@ public class TestController {
             apiResult.setData(fo2);
         }
         return apiResult;
+    }
+
+    @GetMapping("/fo")
+    public ApiResult fo(){
+
+        return ResultUtil.result(fo2);
+    }
+
+    @PostMapping("/test/user/login")
+    public ApiResult login(){
+        Map map = new HashMap();
+
+        map.put("token","AAASSSQQQWWW");
+
+        return ResultUtil.result(map);
     }
 
 }
