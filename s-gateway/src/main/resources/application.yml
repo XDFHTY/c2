@@ -17,5 +17,3 @@ spring:
       label: master
       profile: ${spring.profiles.active}
 #      uri: http://139.224.197.220:8888
-
-

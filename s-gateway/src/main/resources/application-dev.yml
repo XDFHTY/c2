@@ -1,22 +1,29 @@
-#spring:
-#  cloud:
-#    gateway:
-#      enabled: true
-#      discovery:
-#        locator:
-#          enabled: true
-#          #是否与服务注册于发现组件进行结合,
-#          #设为true便开启通过服务中心的自动根据 serviceId 创建路由的功能。
-#          #开启小写验证，默认feign根据服务名查找都是用的全大写
-#          lower-case-service-id: true
-#      routes:
-#      - id: sa
-#        uri: lb://S-ADMIN
-#        predicates:
-#          - Path=/s-admin/**
-#        filters:
-#          - StripPrefix=1
-#
-#logging:
-#  level:
-#    org.springframework.cloud.gateway: debug
+spring:
+  cloud:
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+          enabled: true
+          #是否与服务注册于发现组件进行结合,
+          #设为true便开启通过服务中心的自动根据 serviceId 创建路由的功能。
+          #开启小写验证，默认feign根据服务名查找都是用的全大写
+          lower-case-service-id: true
+      routes:
+        - id: sa
+          uri: lb://S-ADMIN
+          predicates:
+            - Path=/s-admin/**
+          filters:
+            - StripPrefix=1
+        - id: su
+          uri: lb:/s-user
+          predicates:
+            - Path=/s-user/**
+          filters:
+            - StripPrefix=1
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+
