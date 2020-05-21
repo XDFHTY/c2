@@ -30,7 +30,7 @@ public class TestController {
     @Autowired
     private TestService testService;
 
-    @GetMapping("sutx")
+    @GetMapping("/sutx")
     public ApiResult TestTx(){
         int i = testService.testTx();
         ApiResult apiResult;
