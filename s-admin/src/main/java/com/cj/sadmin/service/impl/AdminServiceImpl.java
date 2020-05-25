@@ -5,7 +5,7 @@ import com.cj.common.entity.Admin;
 import com.cj.common.entity.AuthCustomerRole;
 import com.cj.common.entity.AuthRole;
 import com.cj.common.entity.Key64;
-import com.cj.common.exception.UserException;
+import com.cj.core.exception.MyException;
 import com.cj.common.mapper.Key64Mapper;
 import com.cj.common.service.AuthCustomerRoleService;
 import com.cj.common.utils.jwt.JwtUtil;
@@ -148,7 +148,7 @@ public class AdminServiceImpl implements AdminService {
             apiResult = ApiResult.FAIL();
             apiResult.setMsg("账号不存在");
             apiResult.setParams(request.getRequestURL());
-            throw new UserException(apiResult);
+            throw new MyException(apiResult);
 
 
         }else if(oldAdmin.getAdminPass().equals(MD5Encode(oldAdmin.getAdminId()+oldAdmin.getSaltVal()+admin.getAdminPass(),"UTF-8",true))){  //密码正确
@@ -210,7 +210,7 @@ public class AdminServiceImpl implements AdminService {
         if (oldAdmin == null) {
             apiResult = ApiResult.FAIL();
             apiResult.setMsg("用户:"+admin.getAdminName()+" 未注册到环境风险管理平台，请联系管理人员");
-            throw new UserException(apiResult);
+            throw new MyException(apiResult);
 
         } else {  //不验证密码，
             String token = "";

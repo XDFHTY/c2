@@ -4,6 +4,6 @@
 
 
   <insert id="testTX">
-    INSERT  INTO auth_role(role_name, role_description_name) VALUES ("测试角色u","场站级")
+    INSERT  INTO auth_role(role_name, role_grade) VALUES ("测试角色u","场站级")
   </insert>
 </mapper>

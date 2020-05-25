@@ -33,7 +33,7 @@ public class AdminTestController {
         ApiResult apiResult = ApiResult.FAIL();
         apiResult.setMsg("测试业务异常捕获");
 
-//        throw new UserException(apiResult);
+//        throw new MyException(apiResult);
 
         throw new Exception();
 

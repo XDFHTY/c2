@@ -7,7 +7,7 @@ import com.cj.common.domain.AuthModulars;
 import com.cj.common.domain.AuthRoleModulars;
 import com.cj.common.domain.Modular;
 import com.cj.common.entity.AuthRole;
-import com.cj.common.exception.UserException;
+import com.cj.core.exception.MyException;
 import com.cj.common.mapper.AuthCustomerRoleMapper;
 import com.cj.common.mapper.AuthModularMapper;
 import com.cj.common.mapper.AuthRoleMapper;
@@ -105,7 +105,7 @@ public class RolePowerServiceImpl implements RolePowerService {
         if (i>0){
             apiResult = ApiResult.FAIL();
             apiResult.setMsg("此角色已有用户在使用");
-            throw new UserException(apiResult);
+            throw new MyException(apiResult);
         }
         //物理删除角色信息
         int j = authRoleMapper.deleteByPrimaryKey(roleId);

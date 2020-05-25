@@ -32,16 +32,16 @@ public class TestController {
 
     @GetMapping("/sutx")
     public ApiResult TestTx(){
-        int i = testService.testTx();
-        ApiResult apiResult;
-        if (i>0){
-            apiResult = ApiResult.SUCCESS();
-            apiResult.setData(fo2);
-        }else {
-            apiResult = ApiResult.FAIL();
-            apiResult.setData(fo2);
-        }
-        return apiResult;
+//        int i = testService.testTx();
+//        ApiResult apiResult;
+//        if (i>0){
+//            apiResult = ApiResult.SUCCESS();
+//            apiResult.setData(fo2);
+//        }else {
+//            apiResult = ApiResult.FAIL();
+//            apiResult.setData(fo2);
+//        }
+        return ResultUtil.result(testService.testTx());
     }
 
     @GetMapping("/fo")

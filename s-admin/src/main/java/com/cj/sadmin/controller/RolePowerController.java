@@ -49,9 +49,9 @@ public class RolePowerController {
     @ApiOperation("新增角色")
     @PostMapping("/addRole")
     @Log(name = "角色、权限管理",value = "新增角色")
-    public ApiResult addRole(@ApiParam(name = "authRole",value = "roleName=角色名、roleDescriptionName=角色等级" +
+    public ApiResult addRole(@ApiParam(name = "authRole",value = "roleName=角色名、roleGrade=角色等级" +
             "\n{\n" +
-            "  \"roleDescriptionName\": \"作业区级\",\n" +
+            "  \"roleGrade\": \"作业区级\",\n" +
             "  \"roleName\": \"测试角色\"\n" +
             "}" +
             "")

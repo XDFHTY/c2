@@ -4,11 +4,11 @@
   <resultMap id="BaseResultMap" type="com.cj.common.entity.AuthRole" >
     <id column="role_id" property="roleId" jdbcType="BIGINT" />
     <result column="role_name" property="roleName" jdbcType="VARCHAR" />
-    <result column="role_description_name" property="roleDescriptionName" jdbcType="VARCHAR" />
+    <result column="role_grade" property="roleGrade" jdbcType="VARCHAR" />
     <result column="role_state" property="roleState" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    role_id, role_name, role_description_name, role_state
+    role_id, role_name, role_grade, role_state
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -21,9 +21,9 @@
     where role_id = #{roleId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.cj.common.entity.AuthRole" >
-    insert into auth_role (role_id, role_name, role_description_name,
+    insert into auth_role (role_id, role_name, role_grade,
       role_state)
-    values (#{roleId,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{roleDescriptionName,jdbcType=VARCHAR}, 
+    values (#{roleId,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{roleGrade,jdbcType=VARCHAR},
       #{roleState,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cj.common.entity.AuthRole" >
@@ -35,8 +35,8 @@
       <if test="roleName != null" >
         role_name,
       </if>
-      <if test="roleDescriptionName != null" >
-        role_description_name,
+      <if test="roleGrade != null" >
+        role_grade,
       </if>
       <if test="roleState != null" >
         role_state,
@@ -49,8 +49,8 @@
       <if test="roleName != null" >
         #{roleName,jdbcType=VARCHAR},
       </if>
-      <if test="roleDescriptionName != null" >
-        #{roleDescriptionName,jdbcType=VARCHAR},
+      <if test="roleGrade != null" >
+        #{roleGrade,jdbcType=VARCHAR},
       </if>
       <if test="roleState != null" >
         #{roleState,jdbcType=CHAR},
@@ -63,8 +63,8 @@
       <if test="roleName != null" >
         role_name = #{roleName,jdbcType=VARCHAR},
       </if>
-      <if test="roleDescriptionName != null" >
-        role_description_name = #{roleDescriptionName,jdbcType=VARCHAR},
+      <if test="roleGrade != null" >
+        role_grade = #{roleGrade,jdbcType=VARCHAR},
       </if>
       <if test="roleState != null" >
         role_state = #{roleState,jdbcType=CHAR},
@@ -75,7 +75,7 @@
   <update id="updateByPrimaryKey" parameterType="com.cj.common.entity.AuthRole" >
     update auth_role
     set role_name = #{roleName,jdbcType=VARCHAR},
-      role_description_name = #{roleDescriptionName,jdbcType=VARCHAR},
+      role_grade = #{roleGrade,jdbcType=VARCHAR},
       role_state = #{roleState,jdbcType=CHAR}
     where role_id = #{roleId,jdbcType=BIGINT}
   </update>
@@ -84,7 +84,7 @@
   <!--//根据用户ID查询账号角色信息-->
   <select id="findCustomerRoleById" parameterType="java.lang.Long" resultMap="BaseResultMap">
     SELECT
-    ar.role_id, ar.role_name, ar.role_description_name, ar.role_state
+    ar.role_id, ar.role_name, ar.role_grade, ar.role_state
     FROM
     auth_customer_role acr
     LEFT JOIN auth_role ar ON ar.role_id = acr.role_id

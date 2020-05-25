@@ -1,6 +1,6 @@
 package com.cj.sadmin.service.impl;
 
-import com.cj.common.exception.UserException;
+import com.cj.core.exception.MyException;
 import com.cj.sadmin.mapper.AdminMapper;
 import com.cj.sadmin.service.TestService;
 import com.codingapi.txlcn.tc.annotation.DTXPropagation;
@@ -23,7 +23,7 @@ public class TestServiceImpl implements TestService {
 
     @LcnTransaction
     @Override
-    public List testTx() {
+    public Integer testTx() {
         int i = adminMapper.testTX();
 
 
@@ -32,6 +32,6 @@ public class TestServiceImpl implements TestService {
         list.add(2);
         list.add(3);
 
-        return list;
+        return i;
     }
 }

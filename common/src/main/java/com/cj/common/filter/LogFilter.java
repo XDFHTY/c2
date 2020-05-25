@@ -1,7 +1,6 @@
 package com.cj.common.filter;
 
 
-import com.cj.common.exception.UserException;
 import com.cj.core.domain.ApiResult;
 import com.google.gson.Gson;
 import org.slf4j.Logger;

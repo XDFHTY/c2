@@ -28,8 +28,8 @@ public class AuthRole implements Serializable {
     /**
      * 角色等级
      */
-    @ApiModelProperty(name = "roleDescriptionName",value = "角色等级",dataType = "String")
-    private String roleDescriptionName;
+    @ApiModelProperty(name = "roleGrade",value = "角色等级",dataType = "String")
+    private String roleGrade;
 
     /**
      * 状态 0-禁用 1-使用 默认1

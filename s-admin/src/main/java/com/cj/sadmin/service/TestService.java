@@ -5,5 +5,5 @@ import java.util.List;
 public interface TestService {
 
 
-    public List testTx();
+    public Object testTx();
 }

@@ -1,8 +1,10 @@
 package com.cj.sadmin.controller;
 
 
-import com.cj.common.exception.UserException;
+import com.cj.core.exception.MyException;
 import com.cj.core.domain.ApiResult;
+import com.cj.core.domain.ResultUtil;
+import com.cj.core.exception.MyException;
 import com.cj.sadmin.mapper.AdminMapper;
 import com.cj.sadmin.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,16 +38,16 @@ public class TestController {
     @GetMapping(value = "/satx")
     public ApiResult testTx(){
 
-        List list = testService.testTx();
-
-        ApiResult apiResult = ApiResult.SUCCESS();
-        apiResult.setData(list);
-        if (true){
-            apiResult = ApiResult.FAIL();
-            throw new UserException(apiResult);
-
-        }
-        return apiResult;
+//        List list = testService.testTx();
+//
+//        ApiResult apiResult = ApiResult.SUCCESS();
+//        apiResult.setData(list);
+//        if (true){
+//            apiResult = ApiResult.FAIL();
+//            throw new MyException(apiResult);
+//
+//        }
+        return ResultUtil.result(testService.testTx());
 
     }
 
